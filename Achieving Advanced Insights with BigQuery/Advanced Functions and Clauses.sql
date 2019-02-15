@@ -7,7 +7,7 @@
 #standardSQL
 WITH
   summary AS (
-    # count of filings, revenue, expenses since 2013
+  # count of filings, revenue, expenses since 2013
   SELECT
     CONCAT("20",_TABLE_SUFFIX) AS year_filed,
     COUNT(ein) AS nonprofit_count,

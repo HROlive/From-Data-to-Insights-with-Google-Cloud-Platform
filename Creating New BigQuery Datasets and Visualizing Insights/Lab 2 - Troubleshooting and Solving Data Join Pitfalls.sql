@@ -42,7 +42,7 @@ ORDER BY SKU_count DESC
 # Why would one product have more than one SKU from a business perspective?
 
 -- Answer: One product name (e.g. T-Shirt) can have multiple product variants like color, size, etc.
---         It is expected that one product have many SKUs.
+-- It is expected that one product have many SKUs.
 
 # Are there single SKU values with more than one product name associated? 
 # What do you notice about those product names?

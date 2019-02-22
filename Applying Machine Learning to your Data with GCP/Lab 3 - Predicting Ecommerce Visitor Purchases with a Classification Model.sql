@@ -50,7 +50,7 @@ LIMIT 5;
 # Question: How many visitors bought on subsequent visits to our website?
 
 #standardSQL
-# visitors who bought on a return visit (could have bought on first as well
+# visitors who bought on a return visit
 WITH all_visitor_stats AS (
 SELECT
   fullvisitorid, # 741,721 unique visitors
@@ -94,11 +94,11 @@ GROUP BY will_buy_on_return_visit
 
 # Question: What are the risks of only using the above two fields?
 
-# Answer: Machine learning is only as good as the training data that is fed into it. If there isn't
-enough information for the model to determine and learn the relationship between your input features
-# and your label (in our case, whether the visitor bought in the future) then you will not have an 
-# accurate model. While training a model on just these two fields is a start, we will see if they're
-# good enough to produce an accurate model.
+-- Answer: Machine learning is only as good as the training data that is fed into it. If there isn't
+-- enough information for the model to determine and learn the relationship between the input features
+-- and the labels (in our case, whether the visitor bought in the future) then we will not have an 
+-- accurate model. While training a model on just these two fields is a start, we need to see if they're
+-- good enough to produce an accurate model.
 
 #standardSQL
 SELECT
@@ -131,23 +131,21 @@ LIMIT 10;
 
 # Question: Which field isn't known until later in the future?
 
--- Answer: will_buy_on_return_visit is not known after the first visit. Again, you're predicting for
--- a subset of users who returned to your website and purchased. Since you don't know the future at
--- prediction time, you cannot say with certainty whether a new visitor come back and purchase. 
+-- Answer: will_buy_on_return_visit is not known after the first visit. Again, we're predicting for
+-- a subset of users who returned to the website and purchased. Since we don't know the future at
+-- prediction time, we cannot say with certainty whether a new visitor comes back and purchases. 
 -- The value of building a ML model is to get the probability of future purchase based on the data 
--- gleaned about their first session.
+-- from their first session.
 
 # Question: Looking at the initial data results, do you think time_on_site and bounces will be a good
 # indicator of whether the user will return and purchase or not?
 
 -- Answer: It's often too early to tell before training and evaluating the model, but at first glance
--- out of the top 10 time_on_site only 1 customer returned to buy which isn't very promising. Let's see
--- how well the model does.
+-- out of the top 10 time_on_site only 1 customer returned to buy which isn't very promising.
 
 # Select a BQML model type and specify options
 
 #standardSQL
-
 CREATE OR REPLACE MODEL `ecommerce.classification_model`
 OPTIONS
 (
@@ -160,7 +158,6 @@ AS
 SELECT
   * EXCEPT(fullVisitorId)
 FROM
-
   # features 
   (SELECT
     fullVisitorId,
@@ -185,11 +182,10 @@ FROM
 
 # Select your performance criteria
 
--- For classification problems in ML, you want to minimize the False Positive Rate (i.e. predict that the
+-- For classification problems in ML, we want to minimize the False Positive Rate (i.e. predict that the
 -- user will return and purchase and they don't) and maximize the True Positive Rate (predict that the user
 -- will return and purchase and they do).
--- This relationship is visualized with a ROC curve (Receiver Operating Characteristic) like the one shown 
--- here, where you try to maximize the area under the curve.
+-- This relationship is visualized with a ROC curve (Receiver Operating Characteristic).
 -- In BQML, roc_auc is simply a queryable field when evaluating your trained ML model.
 
 #standardSQL
@@ -207,7 +203,6 @@ FROM
 SELECT
   * EXCEPT(fullVisitorId)
 FROM
-
   # features 
   (SELECT
     fullVisitorId,
@@ -230,7 +225,7 @@ FROM
 
 -- Answer: After evaluating our model we get a roc_auc of 0.72458, which shows the model has decent,
 -- but not great, predictive power. Since the goal is to get the area under the curve as close to
--- 1.0 as possible there is room for improvement.
+-- 1.0 as possible there is still room for improvement.
 
 # Improve model performance with Feature Engineering
 
@@ -259,7 +254,6 @@ SELECT
 
 # add in new features
 SELECT * EXCEPT(unique_session_id) FROM (
-
   SELECT
       CONCAT(fullvisitorid, CAST(visitId AS STRING)) AS unique_session_id,
 

@@ -1,6 +1,6 @@
 [//]: # (Image Reference)
 
-[image1]: ./images/certificate.pdf "Certificate"
+[image1]: ./images/certificate_cloud.PNG "Certificate"
 
 # From Data to Insights with Google Cloud Platform
 
@@ -12,5 +12,5 @@ This four-course accelerated online specialization teaches course participants h
 
 # Certificate
 
-[Certificate](https://www.coursera.org/account/accomplishments/specialization/certificate/JF8AXSRAGNJM)
+[Certificate Verification](https://www.coursera.org/account/accomplishments/specialization/certificate/JF8AXSRAGNJM)
 ![Certificate][image1]

@@ -1,3 +1,7 @@
+[//]: # (Image Reference)
+
+[image1]: ./images/certificate.pdf "Certificate"
+
 # From Data to Insights with Google Cloud Platform
 
 This repo contains my solutions to the exercises from [From Data to Insights with Google Cloud Platform](https://www.coursera.org/specializations/from-data-to-insights-google-cloud-platform) (some of the code was provided by Coursera)
@@ -8,4 +12,5 @@ This four-course accelerated online specialization teaches course participants h
 
 # Certificate
 
-![Certificate](https://www.coursera.org/account/accomplishments/specialization/certificate/JF8AXSRAGNJM)
+[Certificate](https://www.coursera.org/account/accomplishments/specialization/certificate/JF8AXSRAGNJM)
+![Certificate][image1]

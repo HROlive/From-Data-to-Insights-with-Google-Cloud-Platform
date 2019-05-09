@@ -12,5 +12,5 @@ This four-course accelerated online specialization teaches course participants h
 
 # Certificate
 
-[Certificate Verification](https://www.coursera.org/account/accomplishments/specialization/certificate/JF8AXSRAGNJM)
+[Certificate Verification](https://www.coursera.org/account/accomplishments/specialization/JF8AXSRAGNJM)
 ![Certificate][image1]
